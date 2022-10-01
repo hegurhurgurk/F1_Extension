@@ -1,11 +1,11 @@
 let d=document.getElementById("db");
-let c=document.getElementById("cb");
-let r=document.getElementById("re");
+//let c=document.getElementById("cb");
+//let r=document.getElementById("re");
 let l=document.getElementById("lb");
 //register event listeners
 d.addEventListener("click", async =>{ drivers()});
-r.addEventListener("click", async =>{ refresh()});
-c.addEventListener("click", async =>{ constructors()});
+//r.addEventListener("click", async =>{ refresh()});
+//c.addEventListener("click", async =>{ constructors()});
 l.addEventListener("click", async =>{ lastRace()});
 function destroy(){
   //kills the content to clear the way for gen
@@ -26,13 +26,13 @@ chrome.search.query({disposition:"NEW_TAB" ,text:"f1 standings"});
 function constructors(){
 //gets the constructors from storage and then sends it to gen
 //backup
-chrome.search.query({tabId:t.id ,text:"f1 constructor standings"});
+chrome.search.query({disposition:"NEW_TAB",text:"f1 constructor standings"});
 }
 //handle button 3
 function lastRace(){
 //gets the last race from storage then sends it to gen
 //backup
-chrome.search.query({tabId:t.id ,text:"f1 last race results"});
+chrome.search.query({disposition:"NEW_TAB",text:"f1 last race results"});
 }
 //handle button 4
 function favorites(){
@@ -51,7 +51,18 @@ function refresh(){
  // let w= chrome.windows.create({state:"minimized"});
  // let num=w.id;
  //chrome.windows.update(w.id, {focused:false});
-  chrome.tabs.create({url:"https://www.formula1.com/en/results.html/2022/drivers.html"},driversRef());
+  chrome.tabs.create({url:"https://www.formula1.com/en/results.html/2022/drivers.html"}, async () =>{
+    let queryOptions = { active: true, lastFocusedWindow: true };
+    
+    let tab = await chrome.tabs.query(queryOptions);
+    
+      await chrome.scripting.executeScript({
+      target:{tabId: tab[0].id},
+      files:["driveScript.js"],
+    });
+     chrome.search.query({text:"f1 last race results"});
+
+  });
 
   
  
@@ -59,5 +70,25 @@ function refresh(){
 function driversRef(t){
 
 }
+/*
+html stuff
+<th id="c">
+          <button id="cb" >
+            Constructors
+          </button>
+          
+        </th>
+         <tr id="content">
 
+      </tr>
+      <tr id="settings">
+        <td>Fav</td>
+        <td>Set</td>
+        <td>
+          <button id="re">
+          Refresh
+        </button></td>
+      </tr>
+
+*/
 

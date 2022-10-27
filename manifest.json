@@ -7,13 +7,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches":[ "https://*/*"],
-      "js": [
-        "driveScript.js"
-      ]
-}],
+  
   "permissions": ["storage", "activeTab", "scripting","tabs", "search"],
   "host_permissions": [
     "https://*/*"

@@ -1,110 +1,123 @@
 <!DOCTYPE html>
 <html>
-  <head>
-   <style>
-    body{
+
+<head>
+  <style>
+    body {
       margin: 0;
-    padding: 0;
-    border-color: crimson;
-    border-width: 5px;
-    background-color: crimson;
-    height: auto;
-    
+      padding: 0;
+      border-color: crimson;
+      border-width: 5px;
+      background-color: crimson;
+      height: auto;
+
     }
-    div{
+
+    div {
       margin: 0;
-    padding: 0;
-    border: 0;
+      padding: 0;
+      border: 0;
     }
-    ul{list-style-type: none;
+
+    ul {
+      list-style-type: none;
       margin: 0;
-    padding: 0;
-    width:max-content;
-    height: 10px;
-    background-color:#333;
-    border: 0;
-  }
-  li{
-    display:block;
-    float: left;
-    padding:  8px;
-    background-color: #333;
-    color: white;
-    text-align: center;
+      padding: 0;
+      width: max-content;
+      height: 10px;
+      background-color: #333;
+      border: 0;
+    }
 
-    
-  }
-  li:hover:not(.active){
-    background-color:#111;
-  }
-  .active{
-    background-color: crimson;
-    color: white;
-  }
-  tr{
-    align-content: center;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #333;
-    border: 0;
-  }
-  td{
-    align-content: center;
-    color: white;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    width: 50%;
-  }
-  tr:nth-child(odd){
-    background-color: #222;
-  }
-  .Title{
-    background-color: crimson;
-    color :white;
-    text-align: center;
-    width:100%;
-    height:20px;
-    empty-cells: hide;
-    display:block;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    
+    li {
+      display: block;
+      float: left;
+      padding: 8px;
+      background-color: #333;
+      color: white;
+      text-align: center;
 
-    
-  }
-  table{
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    height: max-content;
-  }
-  
-   </style>
-  </head>
-  <body>
-    <ul>
-      <li id="db">
-        Drivers Championship
-      </li>
-      <li id="cb">
-        Constructors Championship
-      </li>
-      <li id="lb">
-        Last Race
-      </li>
-      <li style="float: right" id="re">
-        Refresh
-      </li>
-    </ul>
-    <table>
-      <tr id="content">
 
-      </tr>
-    </table>
-    <script src="popup.js"></script>
-  </body>
+    }
+
+    li:hover:not(.active) {
+      background-color: #111;
+    }
+
+    .active {
+      background-color: crimson;
+      color: white;
+    }
+
+    tr {
+      align-content: center;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #333;
+      border: 0;
+    }
+
+    td {
+      align-content: center;
+      color: white;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      width: 50%;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #222;
+    }
+
+    .Title {
+      background-color: crimson;
+      color: white;
+      text-align: center;
+      width: 100%;
+      height: 20px;
+      empty-cells: hide;
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: 0;
+
+
+
+    }
+
+    table {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      height: max-content;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li id="db">
+      Drivers Championship
+    </li>
+    <li id="cb">
+      Constructors Championship
+    </li>
+    <li id="lb">
+      Last Race
+    </li>
+    <li style="float: right" id="re">
+      Refresh
+    </li>
+  </ul>
+  <table>
+    <tr id="content">
+
+    </tr>
+  </table>
+  <script src="popup.js"></script>
+</body>
+
 </html>

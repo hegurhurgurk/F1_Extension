@@ -1,25 +1,22 @@
-{
-    let StartConst= document.getElementsByClassName("resultsarchive-table");
-    let infoConst= StartConst[0].children[1];
-    let dataConst=infoConst.children;;
-    let constr = [];
-    for(let i=0;i<dataConst.length;i++ ){
-       let row= dataConst[i].children;
-       let k=[]
-       for(let j=1;j<row.length;j++){
-          k[j-1]=row[j].innerText;
-       }
-       constr[i]=k;
-    
+//start at the table
+let StartConst = document.getElementsByClassName("resultsarchive-table");
+//go to the table content
+let infoConst = StartConst[0].children[1];
+//get the rows
+let dataConst = infoConst.children;
+//create a container to put everything in
+let constr = [];
+for (let i = 0; i < dataConst.length; i++) {
+    //get the current row
+    let row = dataConst[i].children;
+    //create a container row
+    let k = []
+    for (let j = 1; j < row.length; j++) {
+        //put the current cell into the container row
+        k[j - 1] = row[j].innerText;
     }
-    chrome.storage.sync.set({ 'Constr': constr });
-    //chrome.tabs.remove(0);
-    
-    
-    
-    //}
-    //);
-    //get the inner html of the class
-    //parse the inner html
-    //save the parsed data
-    }
+    //put the container row in the container
+    constr[i] = k;
+}
+//set the storage
+chrome.storage.sync.set({ 'Constr': constr });

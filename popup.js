@@ -1,17 +1,17 @@
 let Drivers=document.getElementById("db");
-let data=document.getElementById("cb");
+let Construct=document.getElementById("cb");
 let r=document.getElementById("re");
 let l=document.getElementById("lb");
 //register event listeners
 Drivers.addEventListener("click", () =>{ drivers()});
 r.addEventListener("click", () =>{ refresh()});
-data.addEventListener("click", () =>{ constructors()});
+Construct.addEventListener("click", () =>{ constructors()});
 l.addEventListener("click", () =>{ lastRace()});
 function drivers(){
 //gets the drivers from storage and sends it to gen
 //backup
 Drivers.className="active";
-data.className="na";
+Construct.className="na";
 l.className="na";
 chrome.storage.sync.get("Drivers",  (results)=>{
 //build the header
@@ -66,11 +66,12 @@ for(i=0;i<list.length;i++){
 //loop through and build each row
 }
 function constructors(){
+  //ooga booga walla walla woo build the constructors table this will do
   Drivers.className="na";
-  data.className="active";
+  Construct.className="active";
   l.className="na";
 chrome.storage.sync.get("Constr",  (results)=>{
-  //build the header
+ 
   let content=document.getElementById("content");
   let list= results.Constr;
   //window.alert(list.length);
@@ -115,11 +116,15 @@ chrome.storage.sync.get("Constr",  (results)=>{
 }
 function lastRace(){
   Drivers.className="na";
-data.className="na";
+Construct.className="na";
 l.className="active";
 chrome.storage.sync.get("Name", (results)=>{
   let content=document.getElementById("content");
   let nm=results.Name;
+  let titl=document.getElementsByClassName("Title");
+  if(titl.length>0){
+    content.parentNode.removeChild(titl[0]);
+  }
   //window.alert(results.Name);
   //window.alert(list.length);
   if (content.hasChildNodes){
@@ -187,19 +192,14 @@ chrome.storage.sync.get("Rest",  (results)=>{
 
 }
 function refresh(){
-  let ids =[];
   let d=new Date();
- 
   chrome.tabs.create({url: "https://www.formula1.com/en/results.html/"+d.getFullYear()+"/drivers.html", active: false}, async (tab) =>{
-      //window.alert("hi");
   await chrome.scripting.executeScript({
       target:{tabId: tab.id},
       files:["driveScript.js"],
     }); 
         chrome.tabs.remove(tab.id);
       });
-    
-  
   chrome.tabs.create({url:"https://www.formula1.com/en/results.html/"+d.getFullYear()+"/team.html", active: false}, async (tab) =>{
    await chrome.scripting.executeScript({
     target:{tabId: tab.id},
@@ -208,16 +208,12 @@ function refresh(){
   chrome.tabs.remove(tab.id);
   
 });
-
   chrome.tabs.create({url:"https://www.formula1.com/en/results.html/"+d.getFullYear()+"/races.html", active: false}, async (tab) =>{
     await chrome.scripting.executeScript({
     target:{tabId: tab.id},
-    files:["lastRace.js"],
+    files:["GetLink.js"],
   });
   chrome.tabs.remove(tab.id);
-   
-    
-
  chrome.storage.sync.get("LR", (info)=>{
 let link=info.LR;
 chrome.tabs.create({url: link, active: false}, async (tab) =>{
@@ -232,42 +228,15 @@ chrome.tabs.create({url: link, active: false}, async (tab) =>{
 
 
 });
-
 }
-/*
-<tr id="selectors">
-        <th id="d" ><button id="db">
-          Drivers Championship
-          </button>
-        </th>
-        <th id="c">
-          <button id="cb" >
-            Constructors Championship
-          </button>
-          
-        </th>
-        <th id="l">
-          <button id="lb">
-            Last Race
-          </button>
-        </th>
-      </tr>
-<tr id="settings">
-        <td>
-          <button id="re">
-          Refresh
-        </button></td>
-      </tr>
-
-
-      "content_scripts": [
-    {
-      "matches":[ "https://www.formula1.com/en/*"],
-     "js": [
-       "driveScript.js",
-        "constructcript.js",
-       "lastRace.js",
-       "lastRaceScript.js"
-      ]
-}],
-*/
+function buildHeader(catagories){
+  let content=document.getElementById("content");
+  let row=document.createElement("tr");
+  for (let i=0;i<catagories.length;i++){
+    let text=document.createTextNode(catagories[i]);
+    let box=document.createElement("td");
+    box.appendChild(text);
+    row.appendChild(box);
+  }
+  content.appendChild(row);
+}

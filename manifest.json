@@ -3,9 +3,9 @@
   "description": "Brings up current F1 drivers and constructors standings along with last race results",
   "version": "1.0",
   "manifest_version": 3,
-  "permissions": ["storage", "activeTab", "scripting","tabs", "search"],
+  "permissions": ["storage", "scripting"],
   "host_permissions": [
-    "https://*/*"
+    "https://www.formula1.com/*"
   ],
   "action": {
     "default_popup": "popup.html",

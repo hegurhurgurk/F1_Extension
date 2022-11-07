@@ -1,5 +1,6 @@
 
 //set the html objects
+
 let Drivers = document.getElementById("db");
 let Construct = document.getElementById("cb");
 let r = document.getElementById("re");
@@ -80,7 +81,7 @@ function lastRace() {
     //define the content and name for reference
     let content = document.getElementById("content");
     let nm = results.Name;
-    //clears any previously loded content
+    //clears any previously lodaed content
     clearSpace();
     //creates the title
     let R = document.createElement("a");
@@ -181,4 +182,7 @@ function clearSpace() {
       content.removeChild(dead);
     }
   }
+  
 }
+//pulls up drivers on startup
+document.body.addEventListener("load", drivers());
